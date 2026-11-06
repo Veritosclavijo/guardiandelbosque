@@ -12,7 +12,11 @@ const ANCHO_BARRA := 70.0
 func _ready() -> void:
 	var r := Evaluacion.resumen()
 	var total := Evaluacion.total_preguntas()
-	ruta.text = "Archivo: " + ProjectSettings.globalize_path(Evaluacion.archivo)
+	if OS.has_feature("web"):
+		ruta.text = "Datos guardados en este navegador"
+		$Panel/Pie.text = "[E] descargar resultados.csv     [ENTER] volver"
+	else:
+		ruta.text = "Archivo: " + ProjectSettings.globalize_path(Evaluacion.archivo)
 	if r["n"] == 0:
 		general.text = "Aún no hay participantes. Cuando alguien termine el juego y la encuesta, sus resultados aparecerán aquí."
 		valoracion.text = ""
@@ -39,4 +43,8 @@ func _process(_delta: float) -> void:
 		Sonido.reproducir("click")
 		get_tree().change_scene_to_file("res://Scenes/World/titulo.tscn")
 	elif Input.is_action_just_pressed("INTERACTUAR"):
-		OS.shell_open(ProjectSettings.globalize_path("user://"))
+		if OS.has_feature("web"):
+			if FileAccess.file_exists(Evaluacion.archivo):
+				JavaScriptBridge.download_buffer(FileAccess.get_file_as_bytes(Evaluacion.archivo), "resultados.csv", "text/csv")
+		else:
+			OS.shell_open(ProjectSettings.globalize_path("user://"))

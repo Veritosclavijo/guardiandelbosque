@@ -27,7 +27,10 @@ func _process(delta: float) -> void:
 		get_tree().change_scene_to_file("res://Scenes/World/evaluacion_inicial.tscn")
 
 
-#F2: panel del docente con el análisis de resultados
+#R o F2: panel del docente con el análisis de resultados.
+#En muchos portátiles F2 controla el brillo o el volumen, por eso también funciona la R.
 func _input(evento: InputEvent) -> void:
-	if evento is InputEventKey and evento.pressed and not evento.echo and evento.physical_keycode == KEY_F2:
+	if not evento is InputEventKey or not evento.pressed or evento.echo or evento.is_command_or_control_pressed():
+		return
+	if evento.physical_keycode == KEY_F2 or evento.physical_keycode == KEY_R:
 		get_tree().change_scene_to_file("res://Scenes/World/panel_resultados.tscn")
