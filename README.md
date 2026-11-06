@@ -6,6 +6,16 @@ sprites en `Assets/` y el mapa pintado en un `TileMapLayer`.
 
 Incluye introducción en viñetas, 3 zonas, música y efectos de sonido.
 
+**Jugar en línea:** https://guardiandelbosque.vercel.app (computador con teclado)
+
+En la versión web, los resultados se guardan en el navegador de cada equipo. Para recogerlos, pulsa R (o F2) en el
+título y luego E para descargar `resultados.csv`.
+
+## Cómo publicar cambios en la web
+
+1. Abre el proyecto en Godot → **Proyecto → Exportar → Web → Exportar proyecto** y guarda en `web/index.html`.
+2. Haz commit y push: Vercel publica la carpeta `web/` automáticamente.
+
 ## Cómo abrirlo
 
 1. Abre Godot 4.7 → **Importar** → selecciona `project.godot` de esta carpeta.
