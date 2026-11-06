@@ -60,12 +60,9 @@ Incluye introducción en viñetas, 3 zonas, música y efectos de sonido.
 
 ## Evaluación del aprendizaje
 
-Flujo completo: título → **evaluación inicial** → introducción → juego → **evaluación final** → comparación antes/después → **encuesta de valoración**.
-
 - Las 6 preguntas y sus opciones están en `Scripts/evaluacion.gd` (las opciones se mezclan al mostrarlas).
 - Al terminar la última zona y la encuesta, el participante queda guardado como una fila (P01, P02…) en
   `%APPDATA%\Godot\app_userdata\Guardian del Bosque\resultados.csv`. Se abre en Excel.
-- **R (o F2) en la pantalla de título** abre el panel del docente: participantes, promedios antes y después, ganancia, aciertos por pregunta y valoración.
 
 ## Shaders, tipografía y menú de pausa
 
