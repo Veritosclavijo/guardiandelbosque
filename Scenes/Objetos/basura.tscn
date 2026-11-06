@@ -1,0 +1,60 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/Objetos/riesgo.gd" id="1_cluij"]
+[ext_resource type="Texture2D" path="res://Assets/basura.png" id="2_ekvx0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6i6e5"]
+atlas = ExtResource("2_ekvx0")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1k7cl"]
+atlas = ExtResource("2_ekvx0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_osxer"]
+atlas = ExtResource("2_ekvx0")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gffgg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6i6e5")
+}],
+"loop": 1,
+"name": &"botella",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1k7cl")
+}],
+"loop": 1,
+"name": &"colilla",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_osxer")
+}],
+"loop": 1,
+"name": &"lata",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8eq7p"]
+radius = 7.0
+
+[node name="Basura" type="Area2D" unique_id=946988117]
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_cluij")
+tipo = "colilla"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1616023826]
+sprite_frames = SubResource("SpriteFrames_gffgg")
+animation = &"colilla"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=971210143]
+shape = SubResource("CircleShape2D_8eq7p")

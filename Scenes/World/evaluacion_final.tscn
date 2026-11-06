@@ -1,0 +1,112 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/World/evaluacion_pantalla.gd" id="1_l1p4h"]
+[ext_resource type="Shader" path="res://Assets/Shaders/fondo_titulo.gdshader" id="2_nvucu"]
+[ext_resource type="FontFile" path="res://Assets/Fonts/SilvestrePixel-Bold.ttf" id="3_riyj5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l4anj"]
+shader = ExtResource("2_nvucu")
+shader_parameter/color_arriba = Color(0.101960786, 0.050980393, 0.023529412, 1)
+shader_parameter/color_abajo = Color(0.2901961, 0.12156863, 0.039215688, 1)
+shader_parameter/color_luz = Color(1, 0.627451, 0.1882353, 1)
+shader_parameter/velocidad = 0.06
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_njql0"]
+bg_color = Color(0, 0, 0, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[node name="PantallaEvaluacion" type="Control" unique_id=764354533]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 240.0
+script = ExtResource("1_l1p4h")
+modo = "final"
+siguiente_escena = "res://Scenes/World/comparacion.tscn"
+
+[node name="Fondo" type="ColorRect" parent="." unique_id=438737359]
+material = SubResource("ShaderMaterial_l4anj")
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 240.0
+
+[node name="Panel" type="Panel" parent="." unique_id=1197429744]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 24.0
+offset_right = 306.0
+offset_bottom = 216.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_njql0")
+
+[node name="Cabecera" type="ColorRect" parent="Panel" unique_id=1555092272]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 290.0
+offset_bottom = 18.0
+color = Color(0.22745098, 0.5411765, 0.17254902, 1)
+
+[node name="Titulo" type="Label" parent="Panel/Cabecera" unique_id=1267149553]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 288.0
+offset_bottom = 25.0
+theme_override_fonts/font = ExtResource("3_riyj5")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "EVALUACIÓN"
+horizontal_alignment = 1
+
+[node name="Contenido" type="VBoxContainer" parent="Panel" unique_id=1706899570]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 24.0
+offset_right = 282.0
+offset_bottom = 170.0
+theme_override_constants/separation = 7
+
+[node name="Progreso" type="Label" parent="Panel/Contenido" unique_id=85823778]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9411765, 0.8156863, 0.1254902, 1)
+text = "Pregunta 1 de 6"
+autowrap_mode = 3
+
+[node name="Pregunta" type="Label" parent="Panel/Contenido" unique_id=1095396952]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Pregunta"
+autowrap_mode = 3
+
+[node name="Opciones" type="VBoxContainer" parent="Panel/Contenido" unique_id=754079933]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Opcion1" type="Label" parent="Panel/Contenido/Opciones" unique_id=236776080]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8156863, 0.8156863, 0.8156863, 1)
+text = "Opción"
+autowrap_mode = 3
+
+[node name="Opcion2" type="Label" parent="Panel/Contenido/Opciones" unique_id=2083090018]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8156863, 0.8156863, 0.8156863, 1)
+text = "Opción"
+autowrap_mode = 3
+
+[node name="Opcion3" type="Label" parent="Panel/Contenido/Opciones" unique_id=1333066080]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8156863, 0.8156863, 0.8156863, 1)
+text = "Opción"
+autowrap_mode = 3
+
+[node name="Pie" type="Label" parent="Panel" unique_id=1416401436]
+layout_mode = 0
+offset_top = 174.0
+offset_right = 292.0
+offset_bottom = 197.0
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+text = "[ENTER] comenzar"
+horizontal_alignment = 1

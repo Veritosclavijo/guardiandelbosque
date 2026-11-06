@@ -1,0 +1,190 @@
+[gd_scene format=4]
+
+[ext_resource type="Script" path="res://Scripts/World/zona.gd" id="1_ifi26"]
+[ext_resource type="TileSet" path="res://Assets/tileset.tres" id="2_v026f"]
+[ext_resource type="Shader" path="res://Assets/Shaders/llamas.gdshader" id="3_lqomw"]
+[ext_resource type="PackedScene" path="res://Scenes/NPC/npc.tscn" id="3_yrx1p"]
+[ext_resource type="Script" path="res://Scripts/NPC/npc.gd" id="4_830q6"]
+[ext_resource type="Texture2D" path="res://Assets/campista.png" id="5_lqomw"]
+[ext_resource type="PackedScene" path="res://Scenes/Enemies/chispa.tscn" id="6_57l33"]
+[ext_resource type="Script" path="res://Scripts/Enemies/chispa.gd" id="7_uec0s"]
+[ext_resource type="PackedScene" path="res://Scenes/Player/player.tscn" id="8_c627x"]
+[ext_resource type="Script" path="res://Scripts/Player/player.gd" id="9_y1tr1"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/hud.tscn" id="10_k6yoq"]
+[ext_resource type="Script" path="res://Scripts/UI/hud.gd" id="11_u1xbk"]
+[ext_resource type="Texture2D" path="res://Assets/ui.png" id="12_y1yc3"]
+[ext_resource type="Texture2D" path="res://Assets/items.png" id="13_mg1vh"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/dialogo.tscn" id="14_vgqk2"]
+[ext_resource type="Script" path="res://Scripts/UI/dialogo.gd" id="15_qo721"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/fuego.wav" id="16_g47tr"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/pausa.tscn" id="18_57l33"]
+[ext_resource type="Script" path="res://Scripts/UI/pausa.gd" id="19_uec0s"]
+[ext_resource type="Shader" path="res://Assets/Shaders/calor.gdshader" id="20_c627x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y1tr1"]
+shader = ExtResource("3_lqomw")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ruwn3"]
+bg_color = Color(0, 0.3, 0, 0.75)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.972549, 0.84705883, 0.1882353, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ux5h0"]
+atlas = ExtResource("12_y1yc3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqf2c"]
+atlas = ExtResource("12_y1yc3")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wqu8"]
+atlas = ExtResource("13_mg1vh")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqivn"]
+atlas = ExtResource("13_mg1vh")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdh5o"]
+atlas = ExtResource("13_mg1vh")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cna6x"]
+atlas = ExtResource("13_mg1vh")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k6yoq"]
+shader = ExtResource("20_c627x")
+shader_parameter/intensidad = null
+
+[node name="Zona3Incendio" type="Node2D" unique_id=1398492981]
+script = ExtResource("1_ifi26")
+nombre_zona = "ZONA 3: INCENDIO"
+viento = Vector2i(1, 0)
+objetivo = "¡Un gran incendio rodea el campamento y el viento cambia de dirección!
+- Habla con los campistas (E) y guíalos al PUNTO DE ENCUENTRO.
+- Apaga el fuego y las chispas; recarga la cubeta en el lago.
+- Al final, reforesta lo quemado."
+aprendiste = "En un incendio primero se protegen las vidas: hay que salir en dirección contraria al fuego y al viento, hacia un punto de encuentro seguro. El viento puede cambiar en cualquier momento."
+musica = "musica_incendio"
+cambio_viento_segundos = 25.0
+
+[node name="Mundo" type="Node2D" parent="." unique_id=11996987]
+position = Vector2(0, 32)
+
+[node name="Suelo" type="TileMapLayer" parent="Mundo" unique_id=263999449]
+tile_map_data = PackedByteArray("AAAAAAAAAAACAAAAAAABAAAAAAACAAAAAAACAAAAAAACAAAAAAADAAAAAAACAAAAAAAEAAAAAAACAAAAAAAFAAAAAAACAAAAAAAGAAAAAAACAAAAAAAHAAAAAAACAAAAAAAIAAAAAAACAAAAAAAJAAAAAAACAAAAAAAKAAAAAAACAAAAAAALAAAAAAACAAAAAAAMAAAAAAACAAAAAAANAAAAAAACAAAAAAAOAAAAAAACAAAAAAAPAAAAAAACAAAAAAAQAAAAAAACAAAAAAARAAAAAAACAAAAAAASAAAAAAACAAAAAAATAAAAAAACAAAAAAAAAAEAAAACAAAAAAABAAEAAAAEAAAAAAACAAEAAAAEAAAAAAADAAEAAAAEAAAAAAAEAAEAAAAEAAAAAAAFAAEAAAACAAAAAAAGAAEAAAAEAAAAAAAHAAEAAAAEAAAAAAAIAAEAAAAEAAAAAAAJAAEAAAAEAAAAAAAKAAEAAAAEAAAAAAALAAEAAAAEAAAAAAAMAAEAAAAEAAAAAAANAAEAAAAEAAAAAAAOAAEAAAACAAAAAAAPAAEAAAAEAAAAAAAQAAEAAAAEAAAAAAARAAEAAAAEAAAAAAASAAEAAAAEAAAAAAATAAEAAAACAAAAAAAAAAIAAAACAAAAAAABAAIAAAAEAAAAAAACAAIAAAAEAAAAAAADAAIAAAACAAAAAAAEAAIAAAAEAAAAAAAFAAIAAAAEAAAAAAAGAAIAAAAEAAAAAAAHAAIAAAAEAAAAAAAIAAIAAAALAAAAAAAJAAIAAAAEAAAAAAAKAAIAAAAEAAAAAAALAAIAAAAEAAAAAAAMAAIAAAAEAAAAAAANAAIAAAAEAAAAAAAOAAIAAAAEAAAAAAAPAAIAAAAEAAAAAAAQAAIAAAACAAAAAAARAAIAAAAEAAAAAAASAAIAAAAEAAAAAAATAAIAAAACAAAAAAAAAAMAAAACAAAAAAABAAMAAAAEAAAAAAACAAMAAAAEAAAAAAADAAMAAAAEAAAAAAAEAAMAAAAEAAAAAAAFAAMAAAAEAAAAAAAGAAMAAAAEAAAAAAAHAAMAAAAEAAAAAAAIAAMAAAAEAAAAAAAJAAMAAAAEAAAAAAAKAAMAAAAEAAAAAAALAAMAAAADAAAAAAAMAAMAAAADAAAAAAANAAMAAAAEAAAAAAAOAAMAAAAEAAAAAAAPAAMAAAAEAAAAAAAQAAMAAAAEAAAAAAARAAMAAAAEAAAAAAASAAMAAAAEAAAAAAATAAMAAAACAAAAAAAAAAQAAAACAAAAAAABAAQAAAAEAAAAAAACAAQAAAAEAAAAAAADAAQAAAAEAAAAAAAEAAQAAAAEAAAAAAAFAAQAAAACAAAAAAAGAAQAAAAEAAAAAAAHAAQAAAAEAAAAAAAIAAQAAAAEAAAAAAAJAAQAAAAEAAAAAAAKAAQAAAADAAAAAAALAAQAAAADAAAAAAAMAAQAAAAEAAAAAAANAAQAAAAEAAAAAAAOAAQAAAACAAAAAAAPAAQAAAAEAAAAAAAQAAQAAAAEAAAAAAARAAQAAAAEAAAAAAASAAQAAAAEAAAAAAATAAQAAAACAAAAAAAAAAUAAAACAAAAAAABAAUAAAAEAAAAAAACAAUAAAALAAAAAAADAAUAAAAEAAAAAAAEAAUAAAAEAAAAAAAFAAUAAAAEAAAAAAAGAAUAAAAEAAAAAAAHAAUAAAAEAAAAAAAIAAUAAAAEAAAAAAAJAAUAAAAEAAAAAAAKAAUAAAADAAAAAAALAAUAAAAEAAAAAAAMAAUAAAAEAAAAAAANAAUAAAAEAAAAAAAOAAUAAAAEAAAAAAAPAAUAAAAEAAAAAAAQAAUAAAAEAAAAAAARAAUAAAALAAAAAAASAAUAAAAEAAAAAAATAAUAAAACAAAAAAAAAAYAAAACAAAAAAABAAYAAAAEAAAAAAACAAYAAAAEAAAAAAADAAYAAAAEAAAAAAAEAAYAAAAEAAAAAAAFAAYAAAAEAAAAAAAGAAYAAAAEAAAAAAAHAAYAAAACAAAAAAAIAAYAAAAEAAAAAAAJAAYAAAADAAAAAAAKAAYAAAADAAAAAAALAAYAAAAEAAAAAAAMAAYAAAAEAAAAAAANAAYAAAAEAAAAAAAOAAYAAAACAAAAAAAPAAYAAAAEAAAAAAAQAAYAAAAEAAAAAAARAAYAAAAEAAAAAAASAAYAAAAEAAAAAAATAAYAAAACAAAAAAAAAAcAAAACAAAAAAABAAcAAAAEAAAAAAACAAcAAAAEAAAAAAADAAcAAAAEAAAAAAAEAAcAAAAEAAAAAAAFAAcAAAAEAAAAAAAGAAcAAAAEAAAAAAAHAAcAAAAEAAAAAAAIAAcAAAAEAAAAAAAJAAcAAAADAAAAAAAKAAcAAAAEAAAAAAALAAcAAAAEAAAAAAAMAAcAAAAEAAAAAAANAAcAAAAEAAAAAAAOAAcAAAAEAAAAAAAPAAcAAAAEAAAAAAAQAAcAAAAEAAAAAAARAAcAAAAEAAAAAAASAAcAAAAEAAAAAAATAAcAAAACAAAAAAAAAAgAAAACAAAAAAABAAgAAAAIAAAAAAACAAgAAAAIAAAAAAADAAgAAAAIAAAAAAAEAAgAAAAIAAAAAAAFAAgAAAAEAAAAAAAGAAgAAAAEAAAAAAAHAAgAAAAEAAAAAAAIAAgAAAACAAAAAAAJAAgAAAADAAAAAAAKAAgAAAAEAAAAAAALAAgAAAAEAAAAAAAMAAgAAAAEAAAAAAANAAgAAAAEAAAAAAAOAAgAAAACAAAAAAAPAAgAAAAEAAAAAAAQAAgAAAAEAAAAAAARAAgAAAAEAAAAAAASAAgAAAAEAAAAAAATAAgAAAACAAAAAAAAAAkAAAACAAAAAAABAAkAAAAHAAAAAAACAAkAAAAHAAAAAAADAAkAAAAHAAAAAAAEAAkAAAAIAAAAAAAFAAkAAAAEAAAAAAAGAAkAAAAEAAAAAAAHAAkAAAAEAAAAAAAIAAkAAAAEAAAAAAAJAAkAAAABAAAAAAAKAAkAAAADAAAAAAALAAkAAAADAAAAAAAMAAkAAAADAAAAAAANAAkAAAADAAAAAAAOAAkAAAADAAAAAAAPAAkAAAABAAAAAAAQAAkAAAABAAAAAAARAAkAAAABAAAAAAASAAkAAAABAAAAAAATAAkAAAACAAAAAAAAAAoAAAACAAAAAAABAAoAAAAHAAAAAAACAAoAAAAHAAAAAAADAAoAAAAHAAAAAAAEAAoAAAAHAAAAAAAFAAoAAAAIAAAAAAAGAAoAAAAEAAAAAAAHAAoAAAAEAAAAAAAIAAoAAAAEAAAAAAAJAAoAAAABAAAAAAAKAAoAAAADAAAAAAALAAoAAAABAAAAAAAMAAoAAAABAAAAAAANAAoAAAABAAAAAAAOAAoAAAABAAAAAAAPAAoAAAABAAAAAAAQAAoAAAABAAAAAAARAAoAAAABAAAAAAASAAoAAAABAAAAAAATAAoAAAACAAAAAAAAAAsAAAACAAAAAAABAAsAAAAHAAAAAAACAAsAAAAHAAAAAAADAAsAAAAHAAAAAAAEAAsAAAAHAAAAAAAFAAsAAAAIAAAAAAAGAAsAAAAIAAAAAAAHAAsAAAAEAAAAAAAIAAsAAAAEAAAAAAAJAAsAAAABAAAAAAAKAAsAAAABAAAAAAALAAsAAAABAAAAAAAMAAsAAAABAAAAAAANAAsAAAABAAAAAAAOAAsAAAABAAAAAAAPAAsAAAABAAAAAAAQAAsAAAABAAAAAAARAAsAAAABAAAAAAASAAsAAAABAAAAAAATAAsAAAACAAAAAAAAAAwAAAACAAAAAAABAAwAAAACAAAAAAACAAwAAAACAAAAAAADAAwAAAACAAAAAAAEAAwAAAACAAAAAAAFAAwAAAACAAAAAAAGAAwAAAACAAAAAAAHAAwAAAACAAAAAAAIAAwAAAACAAAAAAAJAAwAAAACAAAAAAAKAAwAAAACAAAAAAALAAwAAAACAAAAAAAMAAwAAAACAAAAAAANAAwAAAACAAAAAAAOAAwAAAACAAAAAAAPAAwAAAACAAAAAAAQAAwAAAACAAAAAAARAAwAAAACAAAAAAASAAwAAAACAAAAAAATAAwAAAACAAAAAAA=")
+tile_set = ExtResource("2_v026f")
+
+[node name="Fuego" type="TileMapLayer" parent="Mundo" unique_id=49697738]
+material = SubResource("ShaderMaterial_y1tr1")
+tile_map_data = PackedByteArray("AAAMAAMA//////////8NAAMA//////////8MAAQA//////////8GAAMAAAAAAAEAAAAHAAMAAAAAAAEAAAAGAAQAAAAAAAEAAAAPAAcAAAAAAAEAAAAQAAcAAAAAAAEAAAA=")
+tile_set = ExtResource("2_v026f")
+
+[node name="Riesgos" type="Node2D" parent="Mundo" unique_id=1283434176]
+
+[node name="NPCs" type="Node2D" parent="Mundo" unique_id=94796564]
+
+[node name="Campista1" type="StaticBody2D" parent="Mundo/NPCs" unique_id=1301290197 instance=ExtResource("3_yrx1p")]
+position = Vector2(40, 40)
+collision_mask = 0
+script = ExtResource("4_830q6")
+nombre = "Campista"
+textura = ExtResource("5_lqomw")
+pregunta = "¡Hay humo por todas partes! ¿Por dónde salgo?"
+opciones = PackedStringArray("Cruzo el fuego corriendo, es más corto", "Voy en dirección contraria al fuego y al viento, al punto de encuentro", "Me escondo dentro de la carpa")
+correcta = 1
+explicacion_correcta = "¡Gracias! Me voy al punto de encuentro, lejos del fuego. (+1 corazón)"
+explicacion_incorrecta = "Eso es muy peligroso: el fuego avanza rápido y una carpa se quema en segundos. Lo seguro es salir en dirección contraria al fuego y al viento. ¡Voy al punto de encuentro!"
+frase_final = "Estoy a salvo, gracias."
+evacuar = true
+
+[node name="Campista2" type="StaticBody2D" parent="Mundo/NPCs" unique_id=324507678 instance=ExtResource("3_yrx1p")]
+position = Vector2(264, 56)
+collision_mask = 0
+script = ExtResource("4_830q6")
+nombre = "Campista"
+textura = ExtResource("5_lqomw")
+pregunta = "Se me quedó la mochila en la carpa. ¿Vuelvo por ella?"
+opciones = PackedStringArray("Sí, rápido, todavía hay tiempo", "No: las cosas se reemplazan, la vida no. Salgo ya al punto de encuentro", "Espero cerca para ver si el fuego pasa")
+correcta = 1
+explicacion_correcta = "Tienes razón, la vida es primero. Me voy al punto de encuentro. (+1 corazón)"
+explicacion_incorrecta = "No vale la pena arriesgarse: el humo y el fuego llegan muy rápido. Las cosas se reemplazan, la vida no. ¡Me voy al punto de encuentro!"
+frase_final = "Ya estoy a salvo en el punto de encuentro."
+evacuar = true
+
+[node name="Enemigos" type="Node2D" parent="Mundo" unique_id=1626306536]
+
+[node name="Chispa" type="CharacterBody2D" parent="Mundo/Enemigos" unique_id=1468895736 instance=ExtResource("6_57l33")]
+position = Vector2(168, 120)
+collision_layer = 4
+motion_mode = 1
+script = ExtResource("7_uec0s")
+
+[node name="Chispa2" type="CharacterBody2D" parent="Mundo/Enemigos" unique_id=1262464227 instance=ExtResource("6_57l33")]
+position = Vector2(88, 136)
+collision_layer = 4
+motion_mode = 1
+script = ExtResource("7_uec0s")
+
+[node name="Player" type="CharacterBody2D" parent="Mundo" unique_id=1332067767 instance=ExtResource("8_c627x")]
+position = Vector2(200, 168)
+collision_layer = 2
+motion_mode = 1
+script = ExtResource("9_y1tr1")
+
+[node name="PuntoEncuentro" type="Marker2D" parent="Mundo" unique_id=1668366032]
+position = Vector2(264, 168)
+
+[node name="Letrero" type="Label" parent="Mundo/PuntoEncuentro" unique_id=307893657]
+offset_left = -62.0
+offset_top = -26.0
+offset_right = -61.0
+offset_bottom = -15.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_ruwn3")
+theme_override_font_sizes/font_size = 8
+theme_override_colors/font_color = Color(0.972549, 0.84705883, 0.1882353, 1)
+text = "PUNTO DE ENCUENTRO"
+
+[node name="TimerFuego" type="Timer" parent="." unique_id=810982257]
+wait_time = 1.4
+autostart = true
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1349742907 instance=ExtResource("10_k6yoq")]
+layer = 10
+script = ExtResource("11_u1xbk")
+textura_corazon = SubResource("AtlasTexture_ux5h0")
+textura_corazon_vacio = SubResource("AtlasTexture_mqf2c")
+iconos_items = Array[Texture2D]([SubResource("AtlasTexture_7wqu8"), SubResource("AtlasTexture_fqivn"), SubResource("AtlasTexture_qdh5o"), SubResource("AtlasTexture_cna6x")])
+
+[node name="Dialogo" type="CanvasLayer" parent="." unique_id=1500138784 instance=ExtResource("14_vgqk2")]
+process_mode = 3
+layer = 20
+script = ExtResource("15_qo721")
+
+[node name="SonidoFuego" type="AudioStreamPlayer" parent="." unique_id=1161724092]
+stream = ExtResource("16_g47tr")
+volume_db = -14.0
+
+[node name="Pausa" type="CanvasLayer" parent="." unique_id=30633034 instance=ExtResource("18_57l33")]
+process_mode = 3
+layer = 30
+script = ExtResource("19_uec0s")
+controles = "Mover: WASD o flechas
+Usar ítem: Espacio o J
+Cambiar ítem: Q o Tab
+Hablar: E"
+
+[node name="Calor" type="CanvasLayer" parent="." unique_id=578612906]
+layer = 5
+
+[node name="Filtro" type="ColorRect" parent="Calor" unique_id=1089802518]
+material = SubResource("ShaderMaterial_k6yoq")
+offset_right = 320.0
+offset_bottom = 240.0
+mouse_filter = 2
+
+[connection signal="finished" from="SonidoFuego" to="SonidoFuego" method="play"]

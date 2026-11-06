@@ -1,0 +1,54 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/Objetos/riesgo.gd" id="1_6dfrt"]
+[ext_resource type="Texture2D" path="res://Assets/fogata.png" id="2_qwfth"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22iuu"]
+atlas = ExtResource("2_qwfth")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bi8h7"]
+atlas = ExtResource("2_qwfth")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4r4fh"]
+atlas = ExtResource("2_qwfth")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nyfl0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22iuu")
+}],
+"loop": 1,
+"name": &"apagada",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bi8h7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4r4fh")
+}],
+"loop": 1,
+"name": &"encendida",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_atlnw"]
+radius = 7.0
+
+[node name="Fogata" type="Area2D" unique_id=2067398738]
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_6dfrt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1355738817]
+sprite_frames = SubResource("SpriteFrames_nyfl0")
+animation = &"encendida"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1689328683]
+shape = SubResource("CircleShape2D_atlnw")

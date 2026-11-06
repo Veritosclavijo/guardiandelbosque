@@ -1,0 +1,58 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/chispa.gd" id="1_6ypgw"]
+[ext_resource type="Texture2D" path="res://Assets/chispa.png" id="2_bdmw8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tapil"]
+size = Vector2(10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yo6m"]
+atlas = ExtResource("2_bdmw8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsf08"]
+atlas = ExtResource("2_bdmw8")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uytxj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yo6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsf08")
+}],
+"loop": 1,
+"name": &"arder",
+"speed": 5.0
+}]
+
+[node name="Chispa" type="CharacterBody2D" unique_id=1468895736]
+collision_layer = 4
+motion_mode = 1
+script = ExtResource("1_6ypgw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1639320468]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_tapil")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2101274649]
+sprite_frames = SubResource("SpriteFrames_uytxj")
+animation = &"arder"
+
+[node name="RayCast2D_UP" type="RayCast2D" parent="." unique_id=248000473]
+position = Vector2(0, 3)
+target_position = Vector2(0, -10)
+
+[node name="RayCast2D2_DOWN" type="RayCast2D" parent="." unique_id=685046573]
+position = Vector2(0, 3)
+target_position = Vector2(0, 10)
+
+[node name="RayCast2D3_LEFT" type="RayCast2D" parent="." unique_id=1819285204]
+position = Vector2(0, 3)
+target_position = Vector2(-10, 0)
+
+[node name="RayCast2D4_RIGHT" type="RayCast2D" parent="." unique_id=1590539500]
+position = Vector2(0, 3)
+target_position = Vector2(10, 0)

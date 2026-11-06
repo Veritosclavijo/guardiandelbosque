@@ -1,0 +1,84 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/UI/dialogo.gd" id="1_kmh77"]
+[ext_resource type="FontFile" path="res://Assets/Fonts/SilvestrePixel-Bold.ttf" id="2_ugskr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ugskr"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[node name="Dialogo" type="CanvasLayer" unique_id=1500138784]
+process_mode = 3
+layer = 20
+script = ExtResource("1_kmh77")
+
+[node name="Sombra" type="ColorRect" parent="." unique_id=1228690040]
+offset_right = 320.0
+offset_bottom = 240.0
+color = Color(0, 0, 0, 0.45)
+
+[node name="Panel" type="Panel" parent="." unique_id=157757123]
+offset_left = 10.0
+offset_top = 92.0
+offset_right = 310.0
+offset_bottom = 234.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ugskr")
+
+[node name="Contenido" type="VBoxContainer" parent="Panel" unique_id=719839465]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 6.0
+offset_right = 290.0
+offset_bottom = 136.0
+theme_override_constants/separation = 4
+
+[node name="Nombre" type="Label" parent="Panel/Contenido" unique_id=834159376]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ugskr")
+theme_override_font_sizes/font_size = 8
+theme_override_colors/font_color = Color(0.972549, 0.84705883, 0.1882353, 1)
+text = "Nombre"
+autowrap_mode = 3
+
+[node name="Texto" type="Label" parent="Panel/Contenido" unique_id=110990711]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Texto del diálogo"
+autowrap_mode = 3
+
+[node name="Opciones" type="VBoxContainer" parent="Panel/Contenido" unique_id=310048098]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Opcion1" type="Label" parent="Panel/Contenido/Opciones" unique_id=1828263977]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+theme_override_colors/font_color = Color(0.73333335, 0.73333335, 0.73333335, 1)
+text = "Opción"
+autowrap_mode = 3
+
+[node name="Opcion2" type="Label" parent="Panel/Contenido/Opciones" unique_id=1328190912]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+theme_override_colors/font_color = Color(0.73333335, 0.73333335, 0.73333335, 1)
+text = "Opción"
+autowrap_mode = 3
+
+[node name="Opcion3" type="Label" parent="Panel/Contenido/Opciones" unique_id=532926434]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+theme_override_colors/font_color = Color(0.73333335, 0.73333335, 0.73333335, 1)
+text = "Opción"
+autowrap_mode = 3
+
+[node name="Pie" type="Label" parent="Panel/Contenido" unique_id=1252298231]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+theme_override_colors/font_color = Color(0.53333336, 0.53333336, 0.53333336, 1)
+text = "[ENTER] continuar"
+autowrap_mode = 3

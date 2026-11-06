@@ -1,0 +1,192 @@
+[gd_scene format=4]
+
+[ext_resource type="Script" path="res://Scripts/World/zona.gd" id="1_mgo7f"]
+[ext_resource type="TileSet" path="res://Assets/tileset.tres" id="2_0555b"]
+[ext_resource type="PackedScene" path="res://Scenes/Objetos/fogata.tscn" id="3_b4ck8"]
+[ext_resource type="Shader" path="res://Assets/Shaders/llamas.gdshader" id="3_k23vi"]
+[ext_resource type="Script" path="res://Scripts/Objetos/riesgo.gd" id="4_s4s25"]
+[ext_resource type="PackedScene" path="res://Scenes/Objetos/basura.tscn" id="5_ew6k7"]
+[ext_resource type="PackedScene" path="res://Scenes/NPC/npc.tscn" id="6_k23vi"]
+[ext_resource type="Script" path="res://Scripts/NPC/npc.gd" id="7_k4phc"]
+[ext_resource type="Texture2D" path="res://Assets/turista.png" id="8_0l43f"]
+[ext_resource type="Texture2D" path="res://Assets/campesino.png" id="9_5efvi"]
+[ext_resource type="PackedScene" path="res://Scenes/Enemies/chispa.tscn" id="10_heldg"]
+[ext_resource type="Script" path="res://Scripts/Enemies/chispa.gd" id="11_4jhg6"]
+[ext_resource type="PackedScene" path="res://Scenes/Player/player.tscn" id="12_jpaan"]
+[ext_resource type="Script" path="res://Scripts/Player/player.gd" id="13_3vf0o"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/hud.tscn" id="14_1iqrq"]
+[ext_resource type="Script" path="res://Scripts/UI/hud.gd" id="15_8a1dt"]
+[ext_resource type="Texture2D" path="res://Assets/ui.png" id="16_uwliy"]
+[ext_resource type="Texture2D" path="res://Assets/items.png" id="17_b74e3"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/dialogo.tscn" id="18_ox1oy"]
+[ext_resource type="Script" path="res://Scripts/UI/dialogo.gd" id="19_40s8a"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/fuego.wav" id="20_0555b"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/pausa.tscn" id="22_k4phc"]
+[ext_resource type="Script" path="res://Scripts/UI/pausa.gd" id="23_0l43f"]
+[ext_resource type="Shader" path="res://Assets/Shaders/calor.gdshader" id="24_5efvi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_heldg"]
+shader = ExtResource("3_k23vi")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ux5h0"]
+atlas = ExtResource("16_uwliy")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqf2c"]
+atlas = ExtResource("16_uwliy")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wqu8"]
+atlas = ExtResource("17_b74e3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqivn"]
+atlas = ExtResource("17_b74e3")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdh5o"]
+atlas = ExtResource("17_b74e3")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cna6x"]
+atlas = ExtResource("17_b74e3")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4jhg6"]
+shader = ExtResource("24_5efvi")
+shader_parameter/intensidad = null
+
+[node name="Zona1Camping" type="Node2D" unique_id=1936219824]
+script = ExtResource("1_mgo7f")
+siguiente_escena = "res://Scenes/World/zona_2_montana.tscn"
+objetivo = "Unos visitantes dejaron riesgos de incendio en el camping.
+- Apaga la fogata y recoge la basura: ESPACIO usa el ítem y Q lo cambia.
+- Habla con los visitantes con E.
+- Si aparece fuego, apágalo con la cubeta."
+aprendiste = "Una fogata se apaga con agua o tierra hasta que no quede calor. Las colillas, los vidrios y la basura pueden iniciar un incendio."
+
+[node name="Mundo" type="Node2D" parent="." unique_id=1807740582]
+position = Vector2(0, 32)
+
+[node name="Suelo" type="TileMapLayer" parent="Mundo" unique_id=767865157]
+tile_map_data = PackedByteArray("AAAAAAAAAAACAAAAAAABAAAAAAACAAAAAAACAAAAAAACAAAAAAADAAAAAAACAAAAAAAEAAAAAAACAAAAAAAFAAAAAAACAAAAAAAGAAAAAAACAAAAAAAHAAAAAAACAAAAAAAIAAAAAAACAAAAAAAJAAAAAAACAAAAAAAKAAAAAAACAAAAAAALAAAAAAACAAAAAAAMAAAAAAACAAAAAAANAAAAAAACAAAAAAAOAAAAAAACAAAAAAAPAAAAAAACAAAAAAAQAAAAAAACAAAAAAARAAAAAAACAAAAAAASAAAAAAACAAAAAAATAAAAAAACAAAAAAAAAAEAAAACAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAADAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAAGAAEAAAAAAAAAAAAHAAEAAAACAAAAAAAIAAEAAAACAAAAAAAJAAEAAAAAAAAAAAAKAAEAAAAAAAAAAAALAAEAAAAAAAAAAAAMAAEAAAAAAAAAAAANAAEAAAAAAAAAAAAOAAEAAAAAAAAAAAAPAAEAAAAAAAAAAAAQAAEAAAAAAAAAAAARAAEAAAAHAAAAAAASAAEAAAAHAAAAAAATAAEAAAACAAAAAAAAAAIAAAACAAAAAAABAAIAAAAAAAAAAAACAAIAAAABAAAAAAADAAIAAAABAAAAAAAEAAIAAAABAAAAAAAFAAIAAAABAAAAAAAGAAIAAAABAAAAAAAHAAIAAAAAAAAAAAAIAAIAAAAAAAAAAAAJAAIAAAAAAAAAAAAKAAIAAAABAAAAAAALAAIAAAABAAAAAAAMAAIAAAABAAAAAAANAAIAAAABAAAAAAAOAAIAAAABAAAAAAAPAAIAAAABAAAAAAAQAAIAAAAAAAAAAAARAAIAAAAHAAAAAAASAAIAAAAHAAAAAAATAAIAAAACAAAAAAAAAAMAAAACAAAAAAABAAMAAAAAAAAAAAACAAMAAAABAAAAAAADAAMAAAABAAAAAAAEAAMAAAABAAAAAAAFAAMAAAABAAAAAAAGAAMAAAABAAAAAAAHAAMAAAADAAAAAAAIAAMAAAADAAAAAAAJAAMAAAADAAAAAAAKAAMAAAADAAAAAAALAAMAAAADAAAAAAAMAAMAAAABAAAAAAANAAMAAAABAAAAAAAOAAMAAAABAAAAAAAPAAMAAAABAAAAAAAQAAMAAAAAAAAAAAARAAMAAAAHAAAAAAASAAMAAAAHAAAAAAATAAMAAAACAAAAAAAAAAQAAAACAAAAAAABAAQAAAAAAAAAAAACAAQAAAABAAAAAAADAAQAAAABAAAAAAAEAAQAAAABAAAAAAAFAAQAAAABAAAAAAAGAAQAAAADAAAAAAAHAAQAAAADAAAAAAAIAAQAAAABAAAAAAAJAAQAAAABAAAAAAAKAAQAAAABAAAAAAALAAQAAAADAAAAAAAMAAQAAAADAAAAAAANAAQAAAABAAAAAAAOAAQAAAABAAAAAAAPAAQAAAABAAAAAAAQAAQAAAAAAAAAAAARAAQAAAAHAAAAAAASAAQAAAAHAAAAAAATAAQAAAACAAAAAAAAAAUAAAACAAAAAAABAAUAAAAAAAAAAAACAAUAAAAAAAAAAAADAAUAAAABAAAAAAAEAAUAAAABAAAAAAAFAAUAAAABAAAAAAAGAAUAAAADAAAAAAAHAAUAAAABAAAAAAAIAAUAAAABAAAAAAAJAAUAAAABAAAAAAAKAAUAAAABAAAAAAALAAUAAAABAAAAAAAMAAUAAAADAAAAAAANAAUAAAABAAAAAAAOAAUAAAABAAAAAAAPAAUAAAABAAAAAAAQAAUAAAAAAAAAAAARAAUAAAAHAAAAAAASAAUAAAAHAAAAAAATAAUAAAACAAAAAAAAAAYAAAACAAAAAAABAAYAAAACAAAAAAACAAYAAAAAAAAAAAADAAYAAAABAAAAAAAEAAYAAAALAAAAAAAFAAYAAAABAAAAAAAGAAYAAAADAAAAAAAHAAYAAAABAAAAAAAIAAYAAAABAAAAAAAJAAYAAAABAAAAAAAKAAYAAAABAAAAAAALAAYAAAABAAAAAAAMAAYAAAADAAAAAAANAAYAAAABAAAAAAAOAAYAAAALAAAAAAAPAAYAAAAAAAAAAAAQAAYAAAAAAAAAAAARAAYAAAAHAAAAAAASAAYAAAAHAAAAAAATAAYAAAACAAAAAAAAAAcAAAACAAAAAAABAAcAAAACAAAAAAACAAcAAAAAAAAAAAADAAcAAAAAAAAAAAAEAAcAAAAAAAAAAAAFAAcAAAAAAAAAAAAGAAcAAAADAAAAAAAHAAcAAAADAAAAAAAIAAcAAAADAAAAAAAJAAcAAAADAAAAAAAKAAcAAAADAAAAAAALAAcAAAADAAAAAAAMAAcAAAADAAAAAAANAAcAAAAAAAAAAAAOAAcAAAAAAAAAAAAPAAcAAAAAAAAAAAAQAAcAAAAAAAAAAAARAAcAAAAHAAAAAAASAAcAAAAHAAAAAAATAAcAAAACAAAAAAAAAAgAAAACAAAAAAABAAgAAAAAAAAAAAACAAgAAAAAAAAAAAADAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAAFAAgAAAAAAAAAAAAGAAgAAAAAAAAAAAAHAAgAAAAAAAAAAAAIAAgAAAABAAAAAAAJAAgAAAADAAAAAAAKAAgAAAABAAAAAAALAAgAAAAAAAAAAAAMAAgAAAAAAAAAAAANAAgAAAAAAAAAAAAOAAgAAAAAAAAAAAAPAAgAAAAAAAAAAAAQAAgAAAAAAAAAAAARAAgAAAAHAAAAAAASAAgAAAAHAAAAAAATAAgAAAACAAAAAAAAAAkAAAACAAAAAAABAAkAAAACAAAAAAACAAkAAAAAAAAAAAADAAkAAAAAAAAAAAAEAAkAAAAEAAAAAAAFAAkAAAAEAAAAAAAGAAkAAAAEAAAAAAAHAAkAAAAEAAAAAAAIAAkAAAABAAAAAAAJAAkAAAADAAAAAAAKAAkAAAABAAAAAAALAAkAAAAEAAAAAAAMAAkAAAAEAAAAAAANAAkAAAAEAAAAAAAOAAkAAAAEAAAAAAAPAAkAAAAAAAAAAAAQAAkAAAAAAAAAAAARAAkAAAAHAAAAAAASAAkAAAAHAAAAAAATAAkAAAACAAAAAAAAAAoAAAACAAAAAAABAAoAAAACAAAAAAACAAoAAAACAAAAAAADAAoAAAAEAAAAAAAEAAoAAAAEAAAAAAAFAAoAAAAEAAAAAAAGAAoAAAAEAAAAAAAHAAoAAAAEAAAAAAAIAAoAAAAEAAAAAAAJAAoAAAAEAAAAAAAKAAoAAAAEAAAAAAALAAoAAAAEAAAAAAAMAAoAAAAEAAAAAAANAAoAAAAEAAAAAAAOAAoAAAAEAAAAAAAPAAoAAAACAAAAAAAQAAoAAAACAAAAAAARAAoAAAAHAAAAAAASAAoAAAAHAAAAAAATAAoAAAACAAAAAAAAAAsAAAACAAAAAAABAAsAAAACAAAAAAACAAsAAAACAAAAAAADAAsAAAACAAAAAAAEAAsAAAAEAAAAAAAFAAsAAAAEAAAAAAAGAAsAAAAEAAAAAAAHAAsAAAAEAAAAAAAIAAsAAAAEAAAAAAAJAAsAAAAEAAAAAAAKAAsAAAAEAAAAAAALAAsAAAAEAAAAAAAMAAsAAAAEAAAAAAANAAsAAAAEAAAAAAAOAAsAAAACAAAAAAAPAAsAAAACAAAAAAAQAAsAAAACAAAAAAARAAsAAAAHAAAAAAASAAsAAAAHAAAAAAATAAsAAAACAAAAAAAAAAwAAAACAAAAAAABAAwAAAACAAAAAAACAAwAAAACAAAAAAADAAwAAAACAAAAAAAEAAwAAAACAAAAAAAFAAwAAAACAAAAAAAGAAwAAAACAAAAAAAHAAwAAAACAAAAAAAIAAwAAAACAAAAAAAJAAwAAAACAAAAAAAKAAwAAAACAAAAAAALAAwAAAACAAAAAAAMAAwAAAACAAAAAAANAAwAAAACAAAAAAAOAAwAAAACAAAAAAAPAAwAAAACAAAAAAAQAAwAAAACAAAAAAARAAwAAAACAAAAAAASAAwAAAACAAAAAAATAAwAAAACAAAAAAA=")
+tile_set = ExtResource("2_0555b")
+
+[node name="Fuego" type="TileMapLayer" parent="Mundo" unique_id=282961699]
+material = SubResource("ShaderMaterial_heldg")
+tile_set = ExtResource("2_0555b")
+
+[node name="Riesgos" type="Node2D" parent="Mundo" unique_id=175381837]
+
+[node name="Fogata" type="Area2D" parent="Mundo/Riesgos" unique_id=2067398738 instance=ExtResource("3_b4ck8")]
+position = Vector2(152, 88)
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+script = ExtResource("4_s4s25")
+segundos_para_incendio = 50.0
+
+[node name="Colilla" type="Area2D" parent="Mundo/Riesgos" unique_id=946988117 instance=ExtResource("5_ew6k7")]
+position = Vector2(88, 152)
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+script = ExtResource("4_s4s25")
+tipo = "colilla"
+
+[node name="Botella" type="Area2D" parent="Mundo/Riesgos" unique_id=1477256388 instance=ExtResource("5_ew6k7")]
+position = Vector2(216, 152)
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+script = ExtResource("4_s4s25")
+tipo = "botella"
+
+[node name="Lata" type="Area2D" parent="Mundo/Riesgos" unique_id=1075916978 instance=ExtResource("5_ew6k7")]
+position = Vector2(56, 56)
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+script = ExtResource("4_s4s25")
+tipo = "lata"
+
+[node name="NPCs" type="Node2D" parent="Mundo" unique_id=701978318]
+
+[node name="Turista" type="StaticBody2D" parent="Mundo/NPCs" unique_id=1301290197 instance=ExtResource("6_k23vi")]
+position = Vector2(184, 104)
+collision_mask = 0
+script = ExtResource("7_k4phc")
+textura = ExtResource("8_0l43f")
+pregunta = "¡Hola! Ya me voy del camping. ¿Puedo dejar la fogata prendida? Total, se apaga sola."
+opciones = PackedStringArray("Sí, se apaga sola", "No: hay que apagarla con agua o tierra hasta que no quede calor", "Solo si no hace viento")
+correcta = 1
+explicacion_correcta = "¡Tienes razón! Las brasas siguen calientes por horas y el viento puede reavivarlas. ¡Gracias, guardián! (+1 corazón)"
+explicacion_incorrecta = "Mmm, no. Las brasas siguen calientes por horas y el viento puede reavivarlas. Hay que apagarla por completo con agua o tierra."
+frase_final = "Ya aprendí: nunca dejar una fogata encendida."
+
+[node name="Campesino" type="StaticBody2D" parent="Mundo/NPCs" unique_id=971268662 instance=ExtResource("6_k23vi")]
+position = Vector2(72, 152)
+collision_mask = 0
+script = ExtResource("7_k4phc")
+nombre = "Campesino"
+textura = ExtResource("9_5efvi")
+pregunta = "Voy a quemar el pasto seco para limpiar mi terreno. Es más rápido, ¿verdad?"
+opciones = PackedStringArray("Sí, es la mejor forma", "Mejor no: las quemas se salen de control. Hay que limpiar a mano", "Sí, pero solo de noche")
+correcta = 1
+explicacion_correcta = "Tienes razón. Con viento, una quema se convierte en incendio en minutos. Limpiaré a mano. (+1 corazón)"
+explicacion_incorrecta = "Hmm... en realidad las quemas se salen de control con el viento y causan muchos incendios. Es mejor limpiar a mano."
+frase_final = "Hoy limpio el terreno a mano."
+
+[node name="Enemigos" type="Node2D" parent="Mundo" unique_id=496473934]
+
+[node name="Chispa" type="CharacterBody2D" parent="Mundo/Enemigos" unique_id=1468895736 instance=ExtResource("10_heldg")]
+position = Vector2(232, 72)
+collision_layer = 4
+motion_mode = 1
+script = ExtResource("11_4jhg6")
+
+[node name="Player" type="CharacterBody2D" parent="Mundo" unique_id=1332067767 instance=ExtResource("12_jpaan")]
+position = Vector2(152, 120)
+collision_layer = 2
+motion_mode = 1
+script = ExtResource("13_3vf0o")
+
+[node name="TimerFuego" type="Timer" parent="." unique_id=1422918483]
+wait_time = 1.4
+autostart = true
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1349742907 instance=ExtResource("14_1iqrq")]
+layer = 10
+script = ExtResource("15_8a1dt")
+textura_corazon = SubResource("AtlasTexture_ux5h0")
+textura_corazon_vacio = SubResource("AtlasTexture_mqf2c")
+iconos_items = Array[Texture2D]([SubResource("AtlasTexture_7wqu8"), SubResource("AtlasTexture_fqivn"), SubResource("AtlasTexture_qdh5o"), SubResource("AtlasTexture_cna6x")])
+
+[node name="Dialogo" type="CanvasLayer" parent="." unique_id=1500138784 instance=ExtResource("18_ox1oy")]
+process_mode = 3
+layer = 20
+script = ExtResource("19_40s8a")
+
+[node name="SonidoFuego" type="AudioStreamPlayer" parent="." unique_id=304404200]
+stream = ExtResource("20_0555b")
+volume_db = -14.0
+
+[node name="Pausa" type="CanvasLayer" parent="." unique_id=30633034 instance=ExtResource("22_k4phc")]
+process_mode = 3
+layer = 30
+script = ExtResource("23_0l43f")
+controles = "Mover: WASD o flechas
+Usar ítem: Espacio o J
+Cambiar ítem: Q o Tab
+Hablar: E"
+
+[node name="Calor" type="CanvasLayer" parent="." unique_id=1130643843]
+layer = 5
+
+[node name="Filtro" type="ColorRect" parent="Calor" unique_id=312090009]
+material = SubResource("ShaderMaterial_4jhg6")
+offset_right = 320.0
+offset_bottom = 240.0
+mouse_filter = 2
+
+[connection signal="finished" from="SonidoFuego" to="SonidoFuego" method="play"]

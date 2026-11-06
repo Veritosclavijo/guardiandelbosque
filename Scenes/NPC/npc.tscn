@@ -1,0 +1,30 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/NPC/npc.gd" id="1_bjna2"]
+[ext_resource type="Texture2D" path="res://Assets/turista.png" id="2_0s07e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aqj1y"]
+size = Vector2(10, 8)
+
+[node name="NPC" type="StaticBody2D" unique_id=1301290197]
+collision_mask = 0
+script = ExtResource("1_bjna2")
+opciones = PackedStringArray()
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=987964280]
+texture = ExtResource("2_0s07e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=217457131]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_aqj1y")
+
+[node name="Aviso" type="Label" parent="." unique_id=75008962]
+offset_left = -3.0
+offset_top = -24.0
+offset_right = -3.0
+offset_bottom = -24.0
+theme_override_font_sizes/font_size = 8
+theme_override_colors/font_color = Color(0.972549, 0.84705883, 0.1882353, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "!"

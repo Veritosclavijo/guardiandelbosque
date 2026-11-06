@@ -1,0 +1,56 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/Audio/sonido.gd" id="1_noqux"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/paso.wav" id="2_dwnr8"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/click.wav" id="3_mbcp6"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/blip.wav" id="4_s18as"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/acierto.wav" id="5_8rim0"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/error.wav" id="6_banjp"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/dano.wav" id="7_iv1tu"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/victoria.wav" id="8_l04vs"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/agua.wav" id="9_4yk2d"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/pala.wav" id="10_q3gp2"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/recoger.wav" id="11_ccqgp"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/semilla.wav" id="12_4nr2j"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/chispa.wav" id="13_vtl3a"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/alerta.wav" id="14_vgft0"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/musica.wav" id="15_7qiyq"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/musica_incendio.wav" id="16_hgr7y"]
+
+[node name="Sonido" type="Node" unique_id=1738757145]
+script = ExtResource("1_noqux")
+efectos = Dictionary[String, AudioStream]({
+"acierto": ExtResource("5_8rim0"),
+"agua": ExtResource("9_4yk2d"),
+"alerta": ExtResource("14_vgft0"),
+"blip": ExtResource("4_s18as"),
+"chispa": ExtResource("13_vtl3a"),
+"click": ExtResource("3_mbcp6"),
+"dano": ExtResource("7_iv1tu"),
+"error": ExtResource("6_banjp"),
+"pala": ExtResource("10_q3gp2"),
+"paso": ExtResource("2_dwnr8"),
+"recoger": ExtResource("11_ccqgp"),
+"semilla": ExtResource("12_4nr2j"),
+"victoria": ExtResource("8_l04vs")
+})
+musicas = Dictionary[String, AudioStream]({
+"musica": ExtResource("15_7qiyq"),
+"musica_incendio": ExtResource("16_hgr7y")
+})
+
+[node name="Musica" type="AudioStreamPlayer" parent="." unique_id=928797511]
+
+[node name="Efectos" type="Node" parent="." unique_id=950661530]
+
+[node name="Canal1" type="AudioStreamPlayer" parent="Efectos" unique_id=734682251]
+
+[node name="Canal2" type="AudioStreamPlayer" parent="Efectos" unique_id=768584223]
+
+[node name="Canal3" type="AudioStreamPlayer" parent="Efectos" unique_id=988747313]
+
+[node name="Canal4" type="AudioStreamPlayer" parent="Efectos" unique_id=1318909553]
+
+[node name="Canal5" type="AudioStreamPlayer" parent="Efectos" unique_id=2110868198]
+
+[node name="Canal6" type="AudioStreamPlayer" parent="Efectos" unique_id=1308647099]

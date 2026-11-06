@@ -1,0 +1,109 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/World/intro.gd" id="1_2weyi"]
+[ext_resource type="Texture2D" path="res://Assets/Intro/vineta_1.png" id="2_qe8ir"]
+[ext_resource type="Texture2D" path="res://Assets/Intro/vineta_2.png" id="3_7qnaf"]
+[ext_resource type="Texture2D" path="res://Assets/Intro/vineta_3.png" id="4_vrhp8"]
+[ext_resource type="Texture2D" path="res://Assets/Intro/vineta_4.png" id="5_58oy5"]
+[ext_resource type="Shader" path="res://Assets/Shaders/fondo_titulo.gdshader" id="6_qe8ir"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7qnaf"]
+shader = ExtResource("6_qe8ir")
+shader_parameter/color_arriba = Color(0.101960786, 0.050980393, 0.023529412, 1)
+shader_parameter/color_abajo = Color(0.2901961, 0.12156863, 0.039215688, 1)
+shader_parameter/color_luz = Color(1, 0.627451, 0.1882353, 1)
+shader_parameter/velocidad = 0.06
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01l8w"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9411765, 0.47058824, 0.09411765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_agnl2"]
+bg_color = Color(0, 0, 0, 0.85)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[node name="Intro" type="Control" unique_id=63301283]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 240.0
+script = ExtResource("1_2weyi")
+imagenes = Array[Texture2D]([ExtResource("2_qe8ir"), ExtResource("3_7qnaf"), ExtResource("4_vrhp8"), ExtResource("5_58oy5")])
+textos = PackedStringArray("El bosque es el hogar de miles de especies. Además, nos da agua limpia, aire puro y sombra.", "Este año la sequía dejó el pasto seco. Una fogata mal apagada, una colilla o un vidrio al sol bastan para iniciar un incendio.", "Cuando el fuego empieza, el viento lo empuja y las chispas lo esparcen. En pocos minutos puede destruir lo que tardó años en crecer.", "Tú eres el guardabosques. Previene los riesgos, combate el fuego con la cubeta y la pala, y reforesta. ¡El bosque cuenta contigo!")
+siguiente_escena = "res://Scenes/World/zona_1_camping.tscn"
+
+[node name="Fondo" type="ColorRect" parent="." unique_id=1086943399]
+material = SubResource("ShaderMaterial_7qnaf")
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 240.0
+color = Color(0.101960786, 0.0627451, 0.03137255, 1)
+
+[node name="Marco" type="Panel" parent="." unique_id=879400305]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 12.0
+offset_right = 284.0
+offset_bottom = 148.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_01l8w")
+
+[node name="Imagen" type="TextureRect" parent="Marco" unique_id=451711674]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 244.0
+offset_bottom = 132.0
+texture = ExtResource("2_qe8ir")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CajaTexto" type="Panel" parent="." unique_id=1000028043]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 154.0
+offset_right = 304.0
+offset_bottom = 218.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_agnl2")
+
+[node name="Margen" type="MarginContainer" parent="CajaTexto" unique_id=1457662722]
+layout_mode = 0
+offset_right = 288.0
+offset_bottom = 64.0
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="Texto" type="Label" parent="CajaTexto/Margen" unique_id=395181404]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Texto"
+autowrap_mode = 3
+
+[node name="Contador" type="Label" parent="." unique_id=735700907]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 222.0
+offset_right = 16.0
+offset_bottom = 222.0
+theme_override_font_sizes/font_size = 8
+theme_override_colors/font_color = Color(0.7529412, 0.627451, 0.5019608, 1)
+text = "1 / 4"
+
+[node name="Pie" type="Label" parent="." unique_id=1357980480]
+layout_mode = 0
+offset_top = 222.0
+offset_right = 320.0
+offset_bottom = 245.0
+theme_override_font_sizes/font_size = 8
+theme_override_colors/font_color = Color(0.972549, 0.84705883, 0.1882353, 1)
+text = "[ENTER] continuar     [ESC] saltar"
+horizontal_alignment = 1

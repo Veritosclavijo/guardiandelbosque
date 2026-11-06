@@ -1,0 +1,112 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/UI/pausa.gd" id="1_mif24"]
+[ext_resource type="FontFile" path="res://Assets/Fonts/SilvestrePixel-Bold.ttf" id="2_4gejx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nkt5o"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[node name="Pausa" type="CanvasLayer" unique_id=30633034]
+process_mode = 3
+layer = 30
+script = ExtResource("1_mif24")
+controles = "Mover: WASD o flechas
+Usar ítem: Espacio o J
+Cambiar ítem: Q o Tab
+Hablar: E"
+
+[node name="Sombra" type="ColorRect" parent="." unique_id=285153520]
+offset_right = 320.0
+offset_bottom = 240.0
+color = Color(0, 0, 0, 0.55)
+
+[node name="Panel" type="Panel" parent="." unique_id=631201440]
+offset_left = 50.0
+offset_top = 26.0
+offset_right = 270.0
+offset_bottom = 214.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_nkt5o")
+
+[node name="Cabecera" type="ColorRect" parent="Panel" unique_id=676845846]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 218.0
+offset_bottom = 18.0
+color = Color(0.22745098, 0.5411765, 0.17254902, 1)
+
+[node name="Titulo" type="Label" parent="Panel/Cabecera" unique_id=7906884]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 216.0
+offset_bottom = 25.0
+theme_override_fonts/font = ExtResource("2_4gejx")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "PAUSA"
+horizontal_alignment = 1
+
+[node name="Opciones" type="VBoxContainer" parent="Panel" unique_id=1193349634]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 24.0
+offset_right = 206.0
+offset_bottom = 96.0
+theme_override_constants/separation = 3
+
+[node name="Opcion1" type="Label" parent="Panel/Opciones" unique_id=849655081]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Opción"
+
+[node name="Opcion2" type="Label" parent="Panel/Opciones" unique_id=510846754]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Opción"
+
+[node name="Opcion3" type="Label" parent="Panel/Opciones" unique_id=31717604]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Opción"
+
+[node name="Opcion4" type="Label" parent="Panel/Opciones" unique_id=1862362278]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Opción"
+
+[node name="Opcion5" type="Label" parent="Panel/Opciones" unique_id=1500019907]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Opción"
+
+[node name="TituloControles" type="Label" parent="Panel" unique_id=2022715872]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 100.0
+offset_right = 14.0
+offset_bottom = 100.0
+theme_override_fonts/font = ExtResource("2_4gejx")
+theme_override_colors/font_color = Color(0.9411765, 0.8156863, 0.1254902, 1)
+text = "CONTROLES"
+
+[node name="Controles" type="Label" parent="Panel" unique_id=723491787]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 112.0
+offset_right = 206.0
+offset_bottom = 172.0
+theme_override_colors/font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
+text = "Controles"
+
+[node name="Pie" type="Label" parent="Panel" unique_id=684176907]
+layout_mode = 0
+offset_top = 170.0
+offset_right = 234.0
+offset_bottom = 193.0
+theme_override_colors/font_color = Color(0.53333336, 0.53333336, 0.53333336, 1)
+text = "ENTER: elegir     ESC: continuar"
+horizontal_alignment = 1

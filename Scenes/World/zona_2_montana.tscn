@@ -1,0 +1,153 @@
+[gd_scene format=4]
+
+[ext_resource type="Script" path="res://Scripts/World/zona.gd" id="1_y2f1w"]
+[ext_resource type="TileSet" path="res://Assets/tileset.tres" id="2_y4sx5"]
+[ext_resource type="Shader" path="res://Assets/Shaders/llamas.gdshader" id="3_3ynbb"]
+[ext_resource type="PackedScene" path="res://Scenes/NPC/npc.tscn" id="3_fat4i"]
+[ext_resource type="Script" path="res://Scripts/NPC/npc.gd" id="4_ioadh"]
+[ext_resource type="Texture2D" path="res://Assets/campesino.png" id="5_oddio"]
+[ext_resource type="PackedScene" path="res://Scenes/Enemies/chispa.tscn" id="6_3ynbb"]
+[ext_resource type="Script" path="res://Scripts/Enemies/chispa.gd" id="7_6bym2"]
+[ext_resource type="PackedScene" path="res://Scenes/Player/player.tscn" id="8_dlel2"]
+[ext_resource type="Script" path="res://Scripts/Player/player.gd" id="9_xk55f"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/hud.tscn" id="10_dimr8"]
+[ext_resource type="Script" path="res://Scripts/UI/hud.gd" id="11_j5rt6"]
+[ext_resource type="Texture2D" path="res://Assets/ui.png" id="12_647ts"]
+[ext_resource type="Texture2D" path="res://Assets/items.png" id="13_685h1"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/dialogo.tscn" id="14_1wyfb"]
+[ext_resource type="Script" path="res://Scripts/UI/dialogo.gd" id="15_2fr55"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/fuego.wav" id="16_y4sx5"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/pausa.tscn" id="18_6bym2"]
+[ext_resource type="Script" path="res://Scripts/UI/pausa.gd" id="19_dlel2"]
+[ext_resource type="Shader" path="res://Assets/Shaders/calor.gdshader" id="20_xk55f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dimr8"]
+shader = ExtResource("3_3ynbb")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ux5h0"]
+atlas = ExtResource("12_647ts")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqf2c"]
+atlas = ExtResource("12_647ts")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wqu8"]
+atlas = ExtResource("13_685h1")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqivn"]
+atlas = ExtResource("13_685h1")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdh5o"]
+atlas = ExtResource("13_685h1")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cna6x"]
+atlas = ExtResource("13_685h1")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j5rt6"]
+shader = ExtResource("20_xk55f")
+shader_parameter/intensidad = null
+
+[node name="Zona2Montana" type="Node2D" unique_id=1398492981]
+script = ExtResource("1_y2f1w")
+nombre_zona = "ZONA 2: LA MONTAÑA"
+siguiente_escena = "res://Scenes/World/zona_3_incendio.tscn"
+viento = Vector2i(1, 0)
+objetivo = "¡Incendio en la montaña! El viento sopla hacia el ESTE y el pasto está seco.
+- Apaga el fuego con la cubeta y recárgala en el río.
+- Cava cortafuegos con la pala delante del fuego.
+- Apaga las chispas y, al final, reforesta con las semillas."
+aprendiste = "El viento y el pasto seco hacen que el fuego avance muy rápido; los cortafuegos lo detienen. Ante un incendio grande: aléjate y avisa a los bomberos."
+
+[node name="Mundo" type="Node2D" parent="." unique_id=11996987]
+position = Vector2(0, 32)
+
+[node name="Suelo" type="TileMapLayer" parent="Mundo" unique_id=263999449]
+tile_map_data = PackedByteArray("AAAAAAAAAAACAAAAAAABAAAAAAACAAAAAAACAAAAAAACAAAAAAADAAAAAAACAAAAAAAEAAAAAAACAAAAAAAFAAAAAAACAAAAAAAGAAAAAAACAAAAAAAHAAAAAAACAAAAAAAIAAAAAAACAAAAAAAJAAAAAAACAAAAAAAKAAAAAAACAAAAAAALAAAAAAACAAAAAAAMAAAAAAACAAAAAAANAAAAAAACAAAAAAAOAAAAAAACAAAAAAAPAAAAAAACAAAAAAAQAAAAAAAKAAAAAAARAAAAAAAKAAAAAAASAAAAAAAKAAAAAAATAAAAAAAKAAAAAAAAAAEAAAAHAAAAAAABAAEAAAAHAAAAAAACAAEAAAAAAAAAAAADAAEAAAAAAAAAAAAEAAEAAAACAAAAAAAFAAEAAAAEAAAAAAAGAAEAAAAEAAAAAAAHAAEAAAAEAAAAAAAIAAEAAAAEAAAAAAAJAAEAAAAEAAAAAAAKAAEAAAAEAAAAAAALAAEAAAAEAAAAAAAMAAEAAAAEAAAAAAANAAEAAAAEAAAAAAAOAAEAAAAEAAAAAAAPAAEAAAAEAAAAAAAQAAEAAAAEAAAAAAARAAEAAAAEAAAAAAASAAEAAAAEAAAAAAATAAEAAAAKAAAAAAAAAAIAAAAHAAAAAAABAAIAAAAHAAAAAAACAAIAAAAAAAAAAAADAAIAAAAAAAAAAAAEAAIAAAAAAAAAAAAFAAIAAAAEAAAAAAAGAAIAAAAEAAAAAAAHAAIAAAAEAAAAAAAIAAIAAAACAAAAAAAJAAIAAAAEAAAAAAAKAAIAAAAEAAAAAAALAAIAAAAEAAAAAAAMAAIAAAAEAAAAAAANAAIAAAAEAAAAAAAOAAIAAAACAAAAAAAPAAIAAAAEAAAAAAAQAAIAAAAEAAAAAAARAAIAAAAEAAAAAAASAAIAAAAEAAAAAAATAAIAAAAKAAAAAAAAAAMAAAAHAAAAAAABAAMAAAAHAAAAAAACAAMAAAAAAAAAAAADAAMAAAAAAAAAAAAEAAMAAAAEAAAAAAAFAAMAAAAEAAAAAAAGAAMAAAAEAAAAAAAHAAMAAAAEAAAAAAAIAAMAAAAEAAAAAAAJAAMAAAAEAAAAAAAKAAMAAAAEAAAAAAALAAMAAAAEAAAAAAAMAAMAAAAEAAAAAAANAAMAAAAEAAAAAAAOAAMAAAAEAAAAAAAPAAMAAAAEAAAAAAAQAAMAAAAEAAAAAAARAAMAAAAEAAAAAAASAAMAAAACAAAAAAATAAMAAAAKAAAAAAAAAAQAAAAHAAAAAAABAAQAAAAHAAAAAAACAAQAAAAAAAAAAAADAAQAAAAAAAAAAAAEAAQAAAADAAAAAAAFAAQAAAADAAAAAAAGAAQAAAADAAAAAAAHAAQAAAADAAAAAAAIAAQAAAADAAAAAAAJAAQAAAAEAAAAAAAKAAQAAAAEAAAAAAALAAQAAAAEAAAAAAAMAAQAAAAEAAAAAAANAAQAAAAEAAAAAAAOAAQAAAAEAAAAAAAPAAQAAAAEAAAAAAAQAAQAAAAEAAAAAAARAAQAAAAEAAAAAAASAAQAAAAEAAAAAAATAAQAAAAKAAAAAAAAAAUAAAAHAAAAAAABAAUAAAAHAAAAAAACAAUAAAAAAAAAAAADAAUAAAAAAAAAAAAEAAUAAAADAAAAAAAFAAUAAAAAAAAAAAAGAAUAAAAAAAAAAAAHAAUAAAADAAAAAAAIAAUAAAAEAAAAAAAJAAUAAAAEAAAAAAAKAAUAAAAEAAAAAAALAAUAAAACAAAAAAAMAAUAAAAEAAAAAAANAAUAAAAEAAAAAAAOAAUAAAAEAAAAAAAPAAUAAAAEAAAAAAAQAAUAAAAEAAAAAAARAAUAAAAEAAAAAAASAAUAAAAEAAAAAAATAAUAAAAKAAAAAAAAAAYAAAAHAAAAAAABAAYAAAAHAAAAAAACAAYAAAAAAAAAAAADAAYAAAAAAAAAAAAEAAYAAAADAAAAAAAFAAYAAAAAAAAAAAAGAAYAAAAAAAAAAAAHAAYAAAADAAAAAAAIAAYAAAAEAAAAAAAJAAYAAAAEAAAAAAAKAAYAAAAEAAAAAAALAAYAAAAEAAAAAAAMAAYAAAAEAAAAAAANAAYAAAAEAAAAAAAOAAYAAAAEAAAAAAAPAAYAAAAEAAAAAAAQAAYAAAACAAAAAAARAAYAAAAEAAAAAAASAAYAAAAEAAAAAAATAAYAAAAKAAAAAAAAAAcAAAAHAAAAAAABAAcAAAAHAAAAAAACAAcAAAAAAAAAAAADAAcAAAAAAAAAAAAEAAcAAAADAAAAAAAFAAcAAAADAAAAAAAGAAcAAAADAAAAAAAHAAcAAAADAAAAAAAIAAcAAAADAAAAAAAJAAcAAAAEAAAAAAAKAAcAAAAEAAAAAAALAAcAAAAEAAAAAAAMAAcAAAAEAAAAAAANAAcAAAAEAAAAAAAOAAcAAAAEAAAAAAAPAAcAAAAEAAAAAAAQAAcAAAAEAAAAAAARAAcAAAAEAAAAAAASAAcAAAAEAAAAAAATAAcAAAAKAAAAAAAAAAgAAAAHAAAAAAABAAgAAAAHAAAAAAACAAgAAAAAAAAAAAADAAgAAAAAAAAAAAAEAAgAAAAEAAAAAAAFAAgAAAAEAAAAAAAGAAgAAAAEAAAAAAAHAAgAAAAEAAAAAAAIAAgAAAAEAAAAAAAJAAgAAAAEAAAAAAAKAAgAAAAEAAAAAAALAAgAAAAEAAAAAAAMAAgAAAACAAAAAAANAAgAAAAEAAAAAAAOAAgAAAAEAAAAAAAPAAgAAAAEAAAAAAAQAAgAAAAEAAAAAAARAAgAAAAEAAAAAAASAAgAAAAEAAAAAAATAAgAAAAKAAAAAAAAAAkAAAAHAAAAAAABAAkAAAAHAAAAAAACAAkAAAAAAAAAAAADAAkAAAAAAAAAAAAEAAkAAAAEAAAAAAAFAAkAAAAEAAAAAAAGAAkAAAAEAAAAAAAHAAkAAAACAAAAAAAIAAkAAAAEAAAAAAAJAAkAAAAEAAAAAAAKAAkAAAAEAAAAAAALAAkAAAAEAAAAAAAMAAkAAAAEAAAAAAANAAkAAAAEAAAAAAAOAAkAAAAEAAAAAAAPAAkAAAAEAAAAAAAQAAkAAAAEAAAAAAARAAkAAAAEAAAAAAASAAkAAAACAAAAAAATAAkAAAAKAAAAAAAAAAoAAAAHAAAAAAABAAoAAAAHAAAAAAACAAoAAAAAAAAAAAADAAoAAAAAAAAAAAAEAAoAAAAAAAAAAAAFAAoAAAAEAAAAAAAGAAoAAAAEAAAAAAAHAAoAAAAEAAAAAAAIAAoAAAAEAAAAAAAJAAoAAAAEAAAAAAAKAAoAAAAEAAAAAAALAAoAAAAEAAAAAAAMAAoAAAAEAAAAAAANAAoAAAAEAAAAAAAOAAoAAAAEAAAAAAAPAAoAAAAEAAAAAAAQAAoAAAAEAAAAAAARAAoAAAAEAAAAAAASAAoAAAAEAAAAAAATAAoAAAAKAAAAAAAAAAsAAAAHAAAAAAABAAsAAAAHAAAAAAACAAsAAAAAAAAAAAADAAsAAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAsAAAAAAAAAAAAGAAsAAAAAAAAAAAAHAAsAAAACAAAAAAAIAAsAAAAEAAAAAAAJAAsAAAAEAAAAAAAKAAsAAAAEAAAAAAALAAsAAAAEAAAAAAAMAAsAAAAEAAAAAAANAAsAAAAEAAAAAAAOAAsAAAACAAAAAAAPAAsAAAAEAAAAAAAQAAsAAAAEAAAAAAARAAsAAAAEAAAAAAASAAsAAAAEAAAAAAATAAsAAAAKAAAAAAAAAAwAAAACAAAAAAABAAwAAAACAAAAAAACAAwAAAACAAAAAAADAAwAAAACAAAAAAAEAAwAAAACAAAAAAAFAAwAAAACAAAAAAAGAAwAAAACAAAAAAAHAAwAAAACAAAAAAAIAAwAAAACAAAAAAAJAAwAAAACAAAAAAAKAAwAAAACAAAAAAALAAwAAAACAAAAAAAMAAwAAAACAAAAAAANAAwAAAACAAAAAAAOAAwAAAACAAAAAAAPAAwAAAACAAAAAAAQAAwAAAAKAAAAAAARAAwAAAAKAAAAAAASAAwAAAAKAAAAAAATAAwAAAAKAAAAAAA=")
+tile_set = ExtResource("2_y4sx5")
+
+[node name="Fuego" type="TileMapLayer" parent="Mundo" unique_id=49697738]
+material = SubResource("ShaderMaterial_dimr8")
+tile_map_data = PackedByteArray("AAAMAAMAAAAAAAEAAAANAAMAAAAAAAEAAAAMAAQAAAAAAAEAAAA=")
+tile_set = ExtResource("2_y4sx5")
+
+[node name="Riesgos" type="Node2D" parent="Mundo" unique_id=1283434176]
+
+[node name="NPCs" type="Node2D" parent="Mundo" unique_id=94796564]
+
+[node name="Brigadista" type="StaticBody2D" parent="Mundo/NPCs" unique_id=1301290197 instance=ExtResource("3_fat4i")]
+position = Vector2(56, 136)
+collision_mask = 0
+script = ExtResource("4_ioadh")
+nombre = "Brigadista"
+textura = ExtResource("5_oddio")
+pregunta = "¡El incendio crece! Si un día ves un incendio grande cerca de tu casa, ¿qué haces?"
+opciones = PackedStringArray("Intento apagarlo yo solo", "Me alejo, aviso a los bomberos y sigo sus indicaciones", "Me acerco a grabar un video")
+correcta = 1
+explicacion_correcta = "¡Exacto! Un incendio grande es muy peligroso. Aléjate en dirección contraria al viento y llama a los bomberos. (+1 corazón)"
+explicacion_incorrecta = "No. Un incendio grande puede rodearte en segundos. Lo correcto es alejarte, avisar a los bomberos y seguir sus indicaciones."
+frase_final = "Haz cortafuegos con la pala delante del fuego, en la dirección del viento."
+
+[node name="Enemigos" type="Node2D" parent="Mundo" unique_id=1626306536]
+
+[node name="Chispa" type="CharacterBody2D" parent="Mundo/Enemigos" unique_id=1468895736 instance=ExtResource("6_3ynbb")]
+position = Vector2(152, 152)
+collision_layer = 4
+motion_mode = 1
+script = ExtResource("7_6bym2")
+
+[node name="Chispa2" type="CharacterBody2D" parent="Mundo/Enemigos" unique_id=1262464227 instance=ExtResource("6_3ynbb")]
+position = Vector2(248, 104)
+collision_layer = 4
+motion_mode = 1
+script = ExtResource("7_6bym2")
+
+[node name="Player" type="CharacterBody2D" parent="Mundo" unique_id=1332067767 instance=ExtResource("8_dlel2")]
+position = Vector2(88, 104)
+collision_layer = 2
+motion_mode = 1
+script = ExtResource("9_xk55f")
+
+[node name="TimerFuego" type="Timer" parent="." unique_id=810982257]
+wait_time = 1.4
+autostart = true
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1349742907 instance=ExtResource("10_dimr8")]
+layer = 10
+script = ExtResource("11_j5rt6")
+textura_corazon = SubResource("AtlasTexture_ux5h0")
+textura_corazon_vacio = SubResource("AtlasTexture_mqf2c")
+iconos_items = Array[Texture2D]([SubResource("AtlasTexture_7wqu8"), SubResource("AtlasTexture_fqivn"), SubResource("AtlasTexture_qdh5o"), SubResource("AtlasTexture_cna6x")])
+
+[node name="Dialogo" type="CanvasLayer" parent="." unique_id=1500138784 instance=ExtResource("14_1wyfb")]
+process_mode = 3
+layer = 20
+script = ExtResource("15_2fr55")
+
+[node name="SonidoFuego" type="AudioStreamPlayer" parent="." unique_id=1161724092]
+stream = ExtResource("16_y4sx5")
+volume_db = -14.0
+
+[node name="Pausa" type="CanvasLayer" parent="." unique_id=30633034 instance=ExtResource("18_6bym2")]
+process_mode = 3
+layer = 30
+script = ExtResource("19_dlel2")
+controles = "Mover: WASD o flechas
+Usar ítem: Espacio o J
+Cambiar ítem: Q o Tab
+Hablar: E"
+
+[node name="Calor" type="CanvasLayer" parent="." unique_id=1893222182]
+layer = 5
+
+[node name="Filtro" type="ColorRect" parent="Calor" unique_id=315520492]
+material = SubResource("ShaderMaterial_j5rt6")
+offset_right = 320.0
+offset_bottom = 240.0
+mouse_filter = 2
+
+[connection signal="finished" from="SonidoFuego" to="SonidoFuego" method="play"]
